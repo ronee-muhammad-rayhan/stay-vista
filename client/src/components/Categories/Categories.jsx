@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import Container from "../../Shared/Container";
+import Container from "../Shared/Container";
 import CategoryBox from "./CategoryBox";
 import { categories } from "./categoriesData";
 

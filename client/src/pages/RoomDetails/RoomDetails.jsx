@@ -41,7 +41,7 @@ const RoomDetails = () => {
                     <RoomInfo room={room}></RoomInfo>
                     {/* Calendar */}
                     <div className='col-span-3 order-first md:order-last mb-10'>
-                        <RoomReservation />
+                        <RoomReservation room={room} />
                     </div>
                 </div>
             </div>

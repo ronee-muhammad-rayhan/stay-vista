@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { imageUpload } from '../../api/utils'
 import useAuth from '../../hooks/useAuth'
+import { saveUser } from '../../api/auth'
 
 const SignUp = () => {
-  const { createUser, updateUserProfile, signInWithGoogle } = useAuth()
+  const { user, createUser, updateUserProfile, signInWithGoogle } = useAuth()
   // form submit handler
   const handleSubmit = async event => {
     event.preventDefault();
@@ -20,13 +21,18 @@ const SignUp = () => {
       const imageData = await imageUpload(image)
 
       //2. User Registration
-      const result = createUser(email, password)
-      console.log(result);
+      const result = await createUser(email, password)
+      // const result = createUser(email, password)
+      // console.log(result);
 
       //3. Save UserName and Profile Photo
       await updateUserProfile(name, imageData?.data?.display_url)
+      console.log(result);
 
       //4. save user data in database
+      const dbResponse = await saveUser(result?.user)//why this colaveri de!!!?
+      // const dbResponse = await saveUser(user)
+      console.log(dbResponse);
       // result.user.email
 
       //5. get token
